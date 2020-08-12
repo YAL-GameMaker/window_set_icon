@@ -1,0 +1,1 @@
+window_reset_icon();
