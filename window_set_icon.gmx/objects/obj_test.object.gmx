@@ -25,12 +25,18 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string></string>
+            <string>icon_surface_sizes[0] = 16;
+icon_surface_sizes[1] = 32;
+icon_surface_sizes[2] = 16;
+icon_surfaces[0] = -1;
+icon_surfaces[1] = -1;
+icon_surfaces[2] = -1;
+</string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="3" enumb="0">
+    <event eventtype="5" enumb="53">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -47,7 +53,29 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string></string>
+            <string>for (var i = 0; i &lt; 3; i++) {
+	var sf = icon_surfaces[i];
+	var sz = icon_surface_sizes[i];
+	if (!surface_exists(sf)) {
+		sf = surface_create(sz, sz);
+		icon_surfaces[i] = sf;
+	}
+	var ov = (i == 2), col;
+	surface_set_target(sf);
+	if (ov) {
+		col = make_color_hsv((current_time / 10) % 256, 150, 170);
+	} else {
+		col = make_color_hsv((current_time / 10) % 256, 250, 230);
+	}
+	draw_clear(col);
+	draw_sprite(spr_debug, i, 0, 0);
+	surface_reset_target();
+	if (ov) {
+		window_set_overlay_icon_surface(icon_surfaces[2]);
+	} else window_set_icon_surface(sf, i);
+}
+
+</string>
           </argument>
         </arguments>
       </action>
@@ -71,6 +99,110 @@
             <kind>1</kind>
             <string>draw_set_font(fnt_test);
 draw_set_color(c_white);
+
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="52">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>window_reset_overlay_icon();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="51">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (!window_set_overlay_icon("test.ico", "Test!")) {
+	show_debug_message("Failed to set overlay icon, HRESULT="
+		+ string(window_set_icon_hresult)
+		+ ", context: " + window_set_icon_context
+	);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="50">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>window_reset_icon();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="49">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (!window_set_icon("yalSunglasses.ico")) {
+	show_debug_message("Failed to set icon, HRESULT="
+		+ string(window_set_icon_hresult)
+		+ ", context: " + window_set_icon_context
+	);
+}
 </string>
           </argument>
         </arguments>

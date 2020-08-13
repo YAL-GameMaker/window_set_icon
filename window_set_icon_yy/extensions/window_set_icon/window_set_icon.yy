@@ -55,6 +55,23 @@
                     "returnType": 2
                 },
                 {
+                    "id": "f0e0fdbb-5d53-86f2-715b-2591adbd885d",
+                    "modelName": "GMExtensionFunction",
+                    "mvc": "1.0",
+                    "argCount": 3,
+                    "args": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "externalName": "window_set_icon_surface_raw",
+                    "help": "",
+                    "hidden": true,
+                    "kind": 11,
+                    "name": "window_set_icon_surface_raw",
+                    "returnType": 2
+                },
+                {
                     "id": "c3d3ce88-2a24-f1c1-351f-2591a9bdff2e",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
@@ -88,6 +105,24 @@
                     "returnType": 2
                 },
                 {
+                    "id": "2d3d2066-919f-4a2f-dbf1-9e2a1e9fdd00",
+                    "modelName": "GMExtensionFunction",
+                    "mvc": "1.0",
+                    "argCount": 4,
+                    "args": [
+                        1,
+                        1,
+                        1,
+                        1
+                    ],
+                    "externalName": "window_set_overlay_icon_surface_raw",
+                    "help": "",
+                    "hidden": true,
+                    "kind": 11,
+                    "name": "window_set_overlay_icon_surface_raw",
+                    "returnType": 2
+                },
+                {
                     "id": "a5b5a8ee-d5db-0ea7-604a-e95d6d6011c8",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
@@ -100,6 +135,21 @@
                     "hidden": true,
                     "kind": 11,
                     "name": "window_reset_overlay_icon_raw",
+                    "returnType": 2
+                },
+                {
+                    "id": "f0e0fdbb-5d53-86f2-351f-61d5e06011cd",
+                    "modelName": "GMExtensionFunction",
+                    "mvc": "1.0",
+                    "argCount": 1,
+                    "args": [
+                        2
+                    ],
+                    "externalName": "window_set_icon_init_raw",
+                    "help": "",
+                    "hidden": true,
+                    "kind": 11,
+                    "name": "window_set_icon_init_raw",
                     "returnType": 2
                 }
             ],
@@ -156,6 +206,83 @@
                     "returnType": 2
                 },
                 {
+                    "id": "78687533-4c42-977a-bd97-70c4f69fee35",
+                    "modelName": "GMExtensionFunction",
+                    "mvc": "1.0",
+                    "argCount": 1,
+                    "args": [
+                        2
+                    ],
+                    "externalName": "window_set_icon_impl_load",
+                    "help": "",
+                    "hidden": true,
+                    "kind": 11,
+                    "name": "window_set_icon_impl_load",
+                    "returnType": 2
+                },
+                {
+                    "id": "da6102db-0e03-e9a5-0fba-c745cba093c2",
+                    "modelName": "GMExtensionFunction",
+                    "mvc": "1.0",
+                    "argCount": 0,
+                    "args": [
+                        
+                    ],
+                    "externalName": "window_set_icon_impl_reuse",
+                    "help": "",
+                    "hidden": true,
+                    "kind": 11,
+                    "name": "window_set_icon_impl_reuse",
+                    "returnType": 2
+                },
+                {
+                    "id": "f12d07d6-519f-80fb-4263-3dbb9c02603e",
+                    "modelName": "GMExtensionFunction",
+                    "mvc": "1.0",
+                    "argCount": 0,
+                    "args": [
+                        
+                    ],
+                    "externalName": "window_set_icon_impl_argbuf",
+                    "help": "",
+                    "hidden": true,
+                    "kind": 11,
+                    "name": "window_set_icon_impl_argbuf",
+                    "returnType": 2
+                },
+                {
+                    "id": "ad6dbe11-fdfd-495c-c1f1-95f107e02bc3",
+                    "modelName": "GMExtensionFunction",
+                    "mvc": "1.0",
+                    "argCount": 2,
+                    "args": [
+                        2,
+                        2
+                    ],
+                    "externalName": "window_set_icon_impl_surfbuf",
+                    "help": "",
+                    "hidden": true,
+                    "kind": 11,
+                    "name": "window_set_icon_impl_surfbuf",
+                    "returnType": 2
+                },
+                {
+                    "id": "72a5dfcc-afef-6c31-4320-fa2753129532",
+                    "modelName": "GMExtensionFunction",
+                    "mvc": "1.0",
+                    "argCount": 2,
+                    "args": [
+                        2,
+                        2
+                    ],
+                    "externalName": "window_set_icon_impl_argres",
+                    "help": "",
+                    "hidden": true,
+                    "kind": 11,
+                    "name": "window_set_icon_impl_argres",
+                    "returnType": 2
+                },
+                {
                     "id": "0f1f0244-e6e8-3d0d-604a-70c4fa8e5582",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
@@ -186,6 +313,22 @@
                     "returnType": 2
                 },
                 {
+                    "id": "c8432060-fa47-3473-6789-bb877354d73d",
+                    "modelName": "GMExtensionFunction",
+                    "mvc": "1.0",
+                    "argCount": 2,
+                    "args": [
+                        2,
+                        2
+                    ],
+                    "externalName": "window_set_icon_surface",
+                    "help": "window_set_icon_surface(surface, set_big_icon)",
+                    "hidden": false,
+                    "kind": 2,
+                    "name": "window_set_icon_surface",
+                    "returnType": 2
+                },
+                {
                     "id": "b2e98a8e-6b56-612e-beab-e65ea3181b4a",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
@@ -204,13 +347,12 @@
                     "id": "a3f89b9f-10ed-da99-c4ba-9de8c59c5fb5",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
-                    "argCount": 2,
+                    "argCount": -1,
                     "args": [
-                        2,
-                        2
+                        
                     ],
                     "externalName": "window_set_overlay_icon",
-                    "help": "window_set_overlay_icon(path_to_an_ico, description)",
+                    "help": "window_set_overlay_icon(path_to_an_ico, ?description)",
                     "hidden": false,
                     "kind": 2,
                     "name": "window_set_overlay_icon",
@@ -220,16 +362,30 @@
                     "id": "0eb44392-1270-2a56-4d9b-b5ef82e6f8be",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
-                    "argCount": 2,
+                    "argCount": -1,
                     "args": [
-                        2,
-                        2
+                        
                     ],
                     "externalName": "window_set_overlay_icon_buffer",
-                    "help": "window_set_overlay_icon_buffer(buffer_with_an_ico_inside, description)",
+                    "help": "window_set_overlay_icon_buffer(buffer_with_an_ico_inside, ?description)",
                     "hidden": false,
                     "kind": 2,
                     "name": "window_set_overlay_icon_buffer",
+                    "returnType": 2
+                },
+                {
+                    "id": "0d167524-cd30-5211-4d45-04701c05c64a",
+                    "modelName": "GMExtensionFunction",
+                    "mvc": "1.0",
+                    "argCount": -1,
+                    "args": [
+                        
+                    ],
+                    "externalName": "window_set_overlay_icon_surface",
+                    "help": "window_set_overlay_icon_surface(surface, ?description)",
+                    "hidden": false,
+                    "kind": 2,
+                    "name": "window_set_overlay_icon_surface",
                     "returnType": 2
                 },
                 {

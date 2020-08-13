@@ -3,7 +3,7 @@
   <name>window_set_icon</name>
   <version>1.0.0</version>
   <packageID></packageID>
-  <ProductID>ACBD3CFF4E539AD869A0E8E3B4B022DD</ProductID>
+  <ProductID></ProductID>
   <date>18/02/17</date>
   <license>Proprietary</license>
   <description></description>
@@ -59,6 +59,19 @@
           </args>
         </function>
         <function>
+          <name>window_set_icon_surface_raw</name>
+          <externalName>window_set_icon_surface_raw</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>3</argCount>
+          <args>
+            <arg>1</arg>
+            <arg>1</arg>
+            <arg>1</arg>
+          </args>
+        </function>
+        <function>
           <name>window_reset_icon_raw</name>
           <externalName>window_reset_icon_raw</externalName>
           <kind>11</kind>
@@ -84,6 +97,20 @@
           </args>
         </function>
         <function>
+          <name>window_set_overlay_icon_surface_raw</name>
+          <externalName>window_set_overlay_icon_surface_raw</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>4</argCount>
+          <args>
+            <arg>1</arg>
+            <arg>1</arg>
+            <arg>1</arg>
+            <arg>1</arg>
+          </args>
+        </function>
+        <function>
           <name>window_reset_overlay_icon_raw</name>
           <externalName>window_reset_overlay_icon_raw</externalName>
           <kind>11</kind>
@@ -92,6 +119,17 @@
           <argCount>1</argCount>
           <args>
             <arg>1</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_set_icon_init_raw</name>
+          <externalName>window_set_icon_init_raw</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>2</arg>
           </args>
         </function>
       </functions>
@@ -121,6 +159,59 @@
           <args/>
         </function>
         <function>
+          <name>window_set_icon_impl_load</name>
+          <externalName>window_set_icon_impl_load</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>1</argCount>
+          <args>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_set_icon_impl_reuse</name>
+          <externalName>window_set_icon_impl_reuse</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>0</argCount>
+          <args/>
+        </function>
+        <function>
+          <name>window_set_icon_impl_argbuf</name>
+          <externalName>window_set_icon_impl_argbuf</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>0</argCount>
+          <args/>
+        </function>
+        <function>
+          <name>window_set_icon_impl_surfbuf</name>
+          <externalName>window_set_icon_impl_surfbuf</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>2</argCount>
+          <args>
+            <arg>2</arg>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
+          <name>window_set_icon_impl_argres</name>
+          <externalName>window_set_icon_impl_argres</externalName>
+          <kind>11</kind>
+          <help></help>
+          <returnType>2</returnType>
+          <argCount>2</argCount>
+          <args>
+            <arg>2</arg>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
           <name>window_set_icon</name>
           <externalName>window_set_icon</externalName>
           <kind>2</kind>
@@ -143,6 +234,18 @@
           </args>
         </function>
         <function>
+          <name>window_set_icon_surface</name>
+          <externalName>window_set_icon_surface</externalName>
+          <kind>2</kind>
+          <help>window_set_icon_surface(surface, set_big_icon)</help>
+          <returnType>2</returnType>
+          <argCount>2</argCount>
+          <args>
+            <arg>2</arg>
+            <arg>2</arg>
+          </args>
+        </function>
+        <function>
           <name>window_reset_icon</name>
           <externalName>window_reset_icon</externalName>
           <kind>2</kind>
@@ -155,25 +258,28 @@
           <name>window_set_overlay_icon</name>
           <externalName>window_set_overlay_icon</externalName>
           <kind>2</kind>
-          <help>window_set_overlay_icon(path_to_an_ico, description)</help>
+          <help>window_set_overlay_icon(path_to_an_ico, ?description)</help>
           <returnType>2</returnType>
-          <argCount>2</argCount>
-          <args>
-            <arg>2</arg>
-            <arg>2</arg>
-          </args>
+          <argCount>-1</argCount>
+          <args/>
         </function>
         <function>
           <name>window_set_overlay_icon_buffer</name>
           <externalName>window_set_overlay_icon_buffer</externalName>
           <kind>2</kind>
-          <help>window_set_overlay_icon_buffer(buffer_with_an_ico_inside, description)</help>
+          <help>window_set_overlay_icon_buffer(buffer_with_an_ico_inside, ?description)</help>
           <returnType>2</returnType>
-          <argCount>2</argCount>
-          <args>
-            <arg>2</arg>
-            <arg>2</arg>
-          </args>
+          <argCount>-1</argCount>
+          <args/>
+        </function>
+        <function>
+          <name>window_set_overlay_icon_surface</name>
+          <externalName>window_set_overlay_icon_surface</externalName>
+          <kind>2</kind>
+          <help>window_set_overlay_icon_surface(surface, ?description)</help>
+          <returnType>2</returnType>
+          <argCount>-1</argCount>
+          <args/>
         </function>
         <function>
           <name>window_reset_overlay_icon</name>

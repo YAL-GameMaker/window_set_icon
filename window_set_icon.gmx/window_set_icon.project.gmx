@@ -3,7 +3,7 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <datafiles number="1" name="datafiles">
+  <datafiles number="4" name="datafiles">
     <datafile>
       <name>window_set_icon.html</name>
       <exists>-1</exists>
@@ -21,12 +21,65 @@
       </ConfigOptions>
       <filename>window_set_icon.html</filename>
     </datafile>
+    <datafile>
+      <name>test.ico</name>
+      <exists>-1</exists>
+      <size>5430</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>test.ico</filename>
+    </datafile>
+    <datafile>
+      <name>yalSunglasses.ico</name>
+      <exists>-1</exists>
+      <size>90022</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>yalSunglasses.ico</filename>
+    </datafile>
+    <datafile>
+      <name>accept.ico</name>
+      <exists>-1</exists>
+      <size>5430</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>accept.ico</filename>
+    </datafile>
   </datafiles>
   <NewExtensions>
     <extension index="0">extensions\window_set_icon</extension>
   </NewExtensions>
   <sounds name="sound"/>
-  <sprites name="sprites"/>
+  <sprites name="sprites">
+    <sprite>sprites\spr_debug</sprite>
+  </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
   <scripts name="scripts">
