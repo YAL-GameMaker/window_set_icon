@@ -92,8 +92,8 @@ struct {
 	void check(HWND hwnd) {
 		if (!isSet) {
 			isSet = true;
-			bigIcon = (HICON)SendMessageW(hwnd, WM_SETICON, ICON_BIG, 0);
-			smallIcon = (HICON)SendMessageW(hwnd, WM_SETICON, ICON_SMALL, 0);
+			bigIcon = (HICON)SendMessageW(hwnd, WM_GETICON, ICON_BIG, 0);
+			smallIcon = (HICON)SendMessageW(hwnd, WM_GETICON, ICON_SMALL, 0);
 		}
 	}
 } defIcon;
@@ -263,8 +263,10 @@ dllx double window_set_icon_surface_raw(void* _hwnd, uint8_t* rgba, window_set_i
 	lastIcon[big].set(icon);
 	lastBitmap[big].set(bmp);
 	//
+	auto hwnd = (HWND)_hwnd;
+	defIcon.check(hwnd);
 	WPARAM wp = big ? ICON_BIG : ICON_SMALL;
-	SendMessage((HWND)_hwnd, WM_SETICON, wp, (LPARAM)icon);
+	SendMessage(hwnd, WM_SETICON, wp, (LPARAM)icon);
 	return true;
 }
 
