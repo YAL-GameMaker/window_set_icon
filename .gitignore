@@ -13,3 +13,5 @@ export/*.png
 export/*.gmz
 *.sdf
 help.rtf
+
+WindowIconToolsUnity/bin/

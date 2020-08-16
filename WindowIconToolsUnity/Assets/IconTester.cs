@@ -1,0 +1,41 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class IconTester : MonoBehaviour
+{
+    public Texture2D texture;
+    public Camera iconCamera;
+    // Start is called before the first frame update
+    Texture2D ConvertTexture(Texture2D texture, TextureFormat format) {
+        var tex = new Texture2D(texture.width, texture.height, format, false);
+        tex.SetPixels32(texture.GetPixels32());
+        return tex;
+    }
+
+    void Start()
+    {
+        texture = ConvertTexture(texture, TextureFormat.BGRA32);
+        WindowIconTools.SetOverlayIcon(texture);
+        WindowIconTools.SetIcon(texture, WindowIconKind.Small);
+        WindowIconTools.SetIcon(texture, WindowIconKind.Big);
+        var rtx = iconCamera.targetTexture;
+        texture = new Texture2D(rtx.width, rtx.height, TextureFormat.BGRA32, false);
+    }
+
+	private void Update() {
+        var rtx = iconCamera.targetTexture;
+        var tex = texture;
+        RenderTexture.active = rtx;
+        tex.ReadPixels(new Rect(0, 0, rtx.width, rtx.height), 0, 0);
+        tex.Apply();
+        WindowIconTools.SetIcon(tex, WindowIconKind.Small);
+        WindowIconTools.SetIcon(tex, WindowIconKind.Big);
+    }
+
+	private void OnDisable() {
+        WindowIconTools.SetOverlayIcon(null);
+        WindowIconTools.SetIcon(null, WindowIconKind.Big);
+        WindowIconTools.SetIcon(null, WindowIconKind.Small);
+    }
+}
