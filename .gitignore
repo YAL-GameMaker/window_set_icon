@@ -5,6 +5,7 @@
 */extensions/*/*.dll
 */Debug/
 */Release/
+x64/
 Debug/
 Release/
 export/*.gmez

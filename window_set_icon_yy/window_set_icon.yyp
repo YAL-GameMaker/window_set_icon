@@ -39,10 +39,10 @@
             }
         },
         {
-            "Key": "16aa8025-454f-4195-98ff-4038f6be6314",
+            "Key": "10164033-e043-42e8-a38b-fe3498227133",
             "Value": {
-                "id": "dfefe104-baea-427a-b8c3-457ec75baa2c",
-                "resourcePath": "datafiles_yy\\yalAlert.ico.yy",
+                "id": "d5b38c94-0eaa-4c2d-bb9f-1318536c1772",
+                "resourcePath": "datafiles_yy\\window_set_icon.html.yy",
                 "resourceType": "GMIncludedFile"
             }
         },
@@ -52,6 +52,22 @@
                 "id": "bfd0da8f-b556-4257-b249-1d663bbb4642",
                 "resourcePath": "views\\1a1012ca-9702-4cd0-870a-3101ca12fddb.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "3a5af38c-757d-41ae-98c0-5d4b09e14e6a",
+            "Value": {
+                "id": "879ad943-3c50-454c-b6f0-2f4d45cb03fd",
+                "resourcePath": "options\\switch\\options_switch.yy",
+                "resourceType": "GMSwitchOptions"
+            }
+        },
+        {
+            "Key": "3a5af38c-757d-44ae-98c0-5d4b09e14e6a",
+            "Value": {
+                "id": "7973509d-8a63-4446-ab6f-40c303ea1cb7",
+                "resourcePath": "options\\ps4\\options_ps4.yy",
+                "resourceType": "GMPS4Options"
             }
         },
         {
@@ -92,6 +108,14 @@
                 "id": "1d0c9ed3-f4a7-4945-b717-197c8b979822",
                 "resourcePath": "options\\html5\\options_html5.yy",
                 "resourceType": "GMHtml5Options"
+            }
+        },
+        {
+            "Key": "7e093a2a-e51c-4a1e-9a53-f9080d38730b",
+            "Value": {
+                "id": "201f9ec0-e9a0-4bce-a2d4-15909daef0d7",
+                "resourcePath": "options\\windowsuap\\options_windowsuap.yy",
+                "resourceType": "GMWindowsUAPOptions"
             }
         },
         {
@@ -167,14 +191,6 @@
             }
         },
         {
-            "Key": "a4826ff0-9d42-4a5c-af60-2e10e39ea8b9",
-            "Value": {
-                "id": "49279fa6-5f4a-4cff-9ae7-5dc34f52f17c",
-                "resourcePath": "datafiles_yy\\test.ico.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "a9188620-a624-4a5a-83ae-a1b53faf038b",
             "Value": {
                 "id": "6ef21923-5c8d-4a4a-8fb3-8e78ba8510c5",
@@ -199,14 +215,6 @@
             }
         },
         {
-            "Key": "c6932544-f200-4072-8702-4f087bf18c95",
-            "Value": {
-                "id": "ff89e5ec-1893-440a-8cf7-d6ee823d0f77",
-                "resourcePath": "datafiles_yy\\accept.ico.yy",
-                "resourceType": "GMIncludedFile"
-            }
-        },
-        {
             "Key": "c9dcc6e5-46f1-4578-8543-9af4f6a4f7de",
             "Value": {
                 "id": "feb828a2-7ad5-43f6-aa87-0fdfe3cf337f",
@@ -220,14 +228,6 @@
                 "id": "fd66a313-d4db-47e0-ae6f-0ce859b96dc2",
                 "resourcePath": "options\\windows\\options_windows.yy",
                 "resourceType": "GMWindowsOptions"
-            }
-        },
-        {
-            "Key": "dccc080d-a3b4-4fe9-ab69-1d3b7e9e12f8",
-            "Value": {
-                "id": "87b62da8-a93c-4441-b0e8-cf2a881decfd",
-                "resourcePath": "sprites\\spr_debug\\spr_debug.yy",
-                "resourceType": "GMSprite"
             }
         },
         {
@@ -252,14 +252,6 @@
                 "id": "a0581282-fe40-48a8-babe-198de1cc3f54",
                 "resourcePath": "views\\e5bc0382-83e6-4bfa-b68f-c702a7545129.yy",
                 "resourceType": "GMFolder"
-            }
-        },
-        {
-            "Key": "e5de0991-f144-4304-b812-6aa08e85382a",
-            "Value": {
-                "id": "0e6cd717-0257-44b9-a07b-14a671508e4d",
-                "resourcePath": "datafiles_yy\\yalSunglasses.ico.yy",
-                "resourceType": "GMIncludedFile"
             }
         },
         {
@@ -295,11 +287,11 @@
             }
         },
         {
-            "Key": "f814056f-7c8c-44ed-af40-9191ad1d60b5",
+            "Key": "f85efd3d-bcec-4ec0-8226-da808afda79d",
             "Value": {
-                "id": "1215aca4-9a71-4f85-901e-82ecbb73b1c2",
-                "resourcePath": "datafiles_yy\\window_set_icon.html.yy",
-                "resourceType": "GMIncludedFile"
+                "id": "045725d4-ca9e-45dc-91a1-3f9454af5ba9",
+                "resourcePath": "options\\xboxone\\options_xboxone.yy",
+                "resourceType": "GMXBoxOneOptions"
             }
         },
         {

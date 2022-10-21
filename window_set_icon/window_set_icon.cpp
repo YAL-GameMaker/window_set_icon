@@ -1,60 +1,12 @@
 /// @author YellowAfterlife
 
+#define _HAS_STD_BYTE 0
 #include "stdafx.h"
 #include <CommCtrl.h>
 #include <shlobj.h>
-#include <stdint.h>
-#include <stdio.h>
-#include <algorithm>
+#include "tiny_string.h"
 
-#if defined(WIN32)
-#define dllx extern "C" __declspec(dllexport)
-#elif defined(GNUC)
-#define dllx extern "C" __attribute__ ((visibility("default"))) 
-#else
-#define dllx extern "C"
-#endif
-
-#define trace(...) { printf("[window_set_icon:%d] ", __LINE__); printf(__VA_ARGS__); printf("\n"); fflush(stdout); }
-
-class StringConv {
-public:
-	char* cbuf = NULL;
-	size_t cbuf_size = 0;
-	WCHAR* wbuf = NULL;
-	size_t wbuf_size = 0;
-	StringConv() {
-
-	}
-	LPCWSTR wget(size_t size) {
-		if (wbuf_size < size) {
-			if (wbuf != NULL) delete wbuf;
-			wbuf = new WCHAR[size];
-			wbuf_size = size;
-		}
-		return wbuf;
-	}
-	LPCWSTR proc(const char* src, int cp = CP_UTF8) {
-		size_t size = MultiByteToWideChar(cp, 0, src, -1, NULL, 0);
-		LPCWSTR buf = wget(size);
-		MultiByteToWideChar(cp, 0, src, -1, wbuf, size);
-		return wbuf;
-	}
-	char* get(size_t size) {
-		if (cbuf_size < size) {
-			if (cbuf != NULL) delete cbuf;
-			cbuf = new char[size];
-			cbuf_size = size;
-		}
-		return cbuf;
-	}
-	char* proc(LPCWSTR src, int cp = CP_UTF8) {
-		size_t size = WideCharToMultiByte(cp, 0, src, -1, NULL, 0, NULL, NULL);
-		char* buf = get(size);
-		WideCharToMultiByte(cp, 0, src, -1, buf, size, NULL, NULL);
-		return buf;
-	}
-} utf8;
+tiny_wstring utf8;
 
 ITaskbarList3* taskbarList3 = nullptr;
 
@@ -100,6 +52,9 @@ struct {
 
 struct PreserveIcon {
 	HICON icon = NULL;
+	void init() {
+		icon = NULL;
+	}
 	void set(HICON val) {
 		if (icon) DestroyIcon(icon);
 		icon = val;
@@ -150,8 +105,8 @@ PBYTE PickBestMatchIcon(BYTE* icoData, size_t icoSize, int cx, int cy) {
 		if (entry.bColorCount > 0) continue;
 		auto w = entry.bWidth;
 		auto h = entry.bHeight;
-		if (w > bw && h > bh) 
-		if (w < cx * 2 || h < cy * 2) continue;
+		if (w > bw && h > bh)
+			if (w < cx * 2 || h < cy * 2) continue;
 		if (bb == NULL || (w < bw && h < bh)) {
 			bb = icoData + entry.dwImageOffset;
 			bw = w;
@@ -172,8 +127,8 @@ HICON LoadIconFromBuffer(BYTE* data, size_t size, int cx, int cy) {
 	return CreateIconFromResourceEx(resBits, resSize, TRUE, ver, cx, cy, LR_DEFAULTCOLOR);
 }
 
+PreserveIcon currSmall, currBig;
 dllx double window_set_icon_raw(void* _hwnd, uint8_t* data, window_set_icon_data* out) {
-	PreserveIcon currSmall, currBig;
 
 	auto cx = GetSystemMetrics(SM_CXSMICON);
 	auto cy = GetSystemMetrics(SM_CYSMICON);
@@ -301,7 +256,7 @@ dllx double window_set_overlay_icon_raw(void* hwnd, uint8_t* data, const char* d
 	}
 
 	//
-	auto result = taskbarList3->SetOverlayIcon((HWND)hwnd, icon, utf8.proc(desc));
+	auto result = taskbarList3->SetOverlayIcon((HWND)hwnd, icon, utf8.conv(desc));
 	if (result != S_OK) {
 		DestroyIcon(icon);
 		out->set(result, "ITaskbarList3::SetOverlayIcon");
@@ -336,9 +291,9 @@ dllx double window_set_overlay_icon_surface_raw(void* _hwnd, uint8_t* rgba, cons
 		DeleteObject(bmp);
 		return out->setLastError("CreateIconIndirect");
 	}
-	
+
 	//
-	auto result = taskbarList3->SetOverlayIcon((HWND)_hwnd, icon, utf8.proc(desc));
+	auto result = taskbarList3->SetOverlayIcon((HWND)_hwnd, icon, utf8.conv(desc));
 	if (result != S_OK) {
 		DeleteObject(bmp);
 		DestroyIcon(icon);
@@ -355,7 +310,17 @@ dllx double window_reset_overlay_icon_raw(void* hwnd) {
 	return true;
 }
 
-dllx double window_set_icon_init_raw(double isRGBA) {
+dllg bool window_set_icon_init_raw(double isRGBA) {
 	SwapRedBlue_needed = isRGBA > 0.5;
 	return true;
+}
+
+void init() {
+	utf8.init();
+	currSmall.init();
+	currBig.init();
+}
+BOOL APIENTRY DllMain(HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReserved) {
+	if (ul_reason_for_call == DLL_PROCESS_ATTACH) init();
+	return TRUE;
 }

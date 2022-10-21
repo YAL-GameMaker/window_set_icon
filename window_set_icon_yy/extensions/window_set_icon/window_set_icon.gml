@@ -1,4 +1,5 @@
 #define window_set_icon_init
+//#init window_set_icon_init
 //#macro window_set_icon_hresult global.g_window_set_icon_hresult
 //#macro window_set_icon_context global.g_window_set_icon_context
 window_set_icon_hresult = 0;
@@ -17,6 +18,20 @@ global.s_window_set_icon_reuse = "Already using this icon - no action needed";
 var _inf = os_get_info();
 window_set_icon_init_raw(ds_map_exists(_inf, "video_d3d11_device"));
 ds_map_destroy(_inf);
+
+#define window_set_icon_prepare_buffer
+/// (size:int)->buffer~
+var _size = argument0;
+gml_pragma("global", "global.__window_set_icon_buffer = undefined");
+var _buf = global.__window_set_icon_buffer;
+if (_buf == undefined) {
+    _buf = buffer_create(_size, buffer_grow, 1);
+    global.__window_set_icon_buffer = _buf;
+} else if (buffer_get_size(_buf) < _size) {
+    buffer_resize(_buf, _size);
+}
+buffer_seek(_buf, buffer_seek_start, 0);
+return _buf;
 
 #define window_set_icon_impl_load
 /// (path)~
@@ -107,7 +122,11 @@ var _w = surface_get_width(_sf);
 var _h = surface_get_height(_sf);
 _big = _big ? 1 : 0;
 var _buf = window_set_icon_impl_surfbuf(_w * _h * 4, _big);
+/* GMS >= 2.3:
+buffer_get_surface(_buf, _sf, 0);
+/*/
 buffer_get_surface(_buf, _sf, 0, 0, 0);
+//*/
 
 var _arg = window_set_icon_impl_argbuf();
 buffer_write(_arg, buffer_s32, _w);
@@ -166,7 +185,11 @@ var _desc = argument_count > 1 ? argument[1] : "";
 var _w = surface_get_width(_sf);
 var _h = surface_get_height(_sf);
 var _buf = window_set_icon_impl_surfbuf(_w * _h * 4, 2);
+/* GMS >= 2.3:
+buffer_get_surface(_buf, _sf, 0);
+/*/
 buffer_get_surface(_buf, _sf, 0, 0, 0);
+//*/
 
 var _arg = window_set_icon_impl_argbuf();
 buffer_write(_arg, buffer_s32, _w);
