@@ -1,7 +1,101 @@
 ```set template default.html```
 ```set title window_set_icon cheat sheet```
 ```set autoapi ext```
-```set intro
-This is a "cheat sheet" for "window_set_icon" extension by YellowAfterlife.
-The extension can be found on [itch.io](https://yellowafterlife.itch.io/gamemaker-window_set_icon).
+```set intro_title window_set_icon```
+```setmd intro
+This is a "cheat sheet" for the "window_set_icon" extension by YellowAfterlife.
+
+The extension can be found [on itch.io](https://yellowafterlife.itch.io/gamemaker-window_set_icon).
+
+The source code can be found [on GitHub](https://github.com/YAL-GameMaker/window_set_icon/).
 ```
+```setmd seterror
+Returns whether successful. Sets [status variables](errors).
+```
+```setmd noerror
+Cannot fail, but returns `true` and sets [status variables](errors) just in case.
+```
+#[Window icon functions](fun-window) {
+	#[window_set_icon(path_to_ico)->]() {
+		Changes the window icon.
+		
+		Path should point to a valid ICO file.
+		
+		%[seterror]
+	}
+	#[window_set_icon_buffer(buffer_with_an_ico_inside)->]() {
+		Changes the window icon.
+		
+		The buffer should contain a valid ICO file.
+		
+		%[seterror]
+	}
+	#[window_set_icon_surface(surface, set_big_icon:bool)->]() {
+		Changes the window icon to match the pixels in a surface.
+		
+		`set_big_icon` indicates whether to change the big (32x32) instead of small (16x16) icon.
+		
+		The "big" icon may used for display in taskbar.
+		
+		%[seterror]
+	}
+	#[window_reset_icon()->]() {
+		Resets the window icon to whatever it was before you first called this extension's functions.
+		
+		%[noerror]
+	}
+	#[window_sync_icon()->]() {
+		Re-applies whatever last icon that we had stored.
+		
+		You should only call this yourself if you encounter a situation where the window icon
+		changes back.
+		
+		%[noerror]
+	}
+}
+#[Taskbar icon overlay functions](fun-taskbar) {
+	```setmd odesc
+	`description` (optional) is a string that provides the alt text version
+	of the information conveyed by the overlay, for accessibility purposes.
+	([MSDN](https://learn.microsoft.com/en-us/windows/win32/api/shobjidl_core/nf-shobjidl_core-itaskbarlist3-setoverlayicon))
+	```
+	#[window_set_overlay_icon(path_to_ico, ?description)->]() {
+		Changes the little overlay/notification badge icon shown in the corner of the window.
+		
+		Path should point to a valid ICO file.
+		
+		%[odesc]
+		
+		%[seterror]
+	}
+	#[window_set_overlay_icon_buffer(buffer_with_an_ico_inside, ?description)->]() {
+		Changes the little overlay/notification badge icon shown in the corner of the taskbar button.
+		
+		The buffer should contain a valid ICO file.
+		
+		%[odesc]
+		
+		%[seterror]
+	}
+	#[window_set_overlay_icon_surface(surface, ?description)->]() {
+		Changes the little overlay/notification badge icon shown in the corner of the taskbar button to match pixels in a surface.
+		
+		%[odesc]
+		
+		%[seterror]
+	}
+	#[window_reset_overlay_icon()->]() {
+		Resets/removes the little overlay/notification badge icon.
+		
+		%[noerror]
+	}
+}
+#[Error handling](errors) {
+	#[window_set_icon_hresult : real]() {
+		This is an [HRESULT](https://learn.microsoft.com/en-us/windows/win32/seccrypto/common-hresult-values)
+		code for the last call.
+	}
+	#[window_set_icon_context : string]() {
+		This is the context for the last call - either what failed, or which function threw up an error.
+	}
+}

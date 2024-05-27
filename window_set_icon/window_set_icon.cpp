@@ -39,7 +39,7 @@ struct window_set_icon_data {
 };
 
 struct {
-	HICON bigIcon, smallIcon;
+	HICON bigIcon = NULL, smallIcon = NULL;
 	bool isSet = false;
 	void check(HWND hwnd) {
 		if (!isSet) {
@@ -62,11 +62,48 @@ struct PreserveIcon {
 };
 struct PreserveBitmap {
 	HBITMAP bitmap = NULL;
+	void init() {
+		bitmap = NULL;
+	}
 	void set(HBITMAP val) {
 		if (bitmap) DeleteObject(bitmap);
 		bitmap = val;
 	}
 };
+
+static struct {
+	HICON icons[2]{};
+	bool enable = false;
+	WNDPROC base = nullptr;
+	void init() {
+		icons[0] = false;
+		icons[1] = false;
+		enable = false;
+		base = nullptr;
+	}
+} window_icon_hook;
+
+LRESULT window_command_proc_hook(HWND hwnd, UINT msg, WPARAM wp, LPARAM lp) {
+	if (msg == WM_SETICON && window_icon_hook.enable) {
+		HICON icon;
+		switch (wp) {
+			case ICON_SMALL:
+				icon = window_icon_hook.icons[0];
+				break;
+			case ICON_BIG:
+				icon = window_icon_hook.icons[1];
+				break;
+			default: icon = NULL;
+		}
+		if (icon != NULL) lp = (LPARAM)icon;
+	}
+	return CallWindowProc(window_icon_hook.base, hwnd, msg, wp, lp);
+}
+void window_icon_hook_ensure(HWND hwnd) {
+	if (window_icon_hook.base == nullptr) {
+		window_icon_hook.base = (WNDPROC)SetWindowLongPtr(hwnd, GWLP_WNDPROC, (LONG_PTR)window_command_proc_hook);
+	}
+}
 
 PBYTE PickBestMatchIcon(BYTE* icoData, size_t icoSize, int cx, int cy) {
 	auto count = *(WORD*)(icoData + 2 * sizeof(WORD));
@@ -124,7 +161,7 @@ HICON LoadIconFromBuffer(BYTE* data, size_t size, int cx, int cy) {
 	// "This parameter is generally set to 0x00030000."
 	// https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-createiconfromresourceex
 	constexpr auto ver = 0x00030000;
-	return CreateIconFromResourceEx(resBits, resSize, TRUE, ver, cx, cy, LR_DEFAULTCOLOR);
+	return CreateIconFromResourceEx(resBits, (DWORD)resSize, TRUE, ver, cx, cy, LR_DEFAULTCOLOR);
 }
 
 PreserveIcon currSmall, currBig;
@@ -151,12 +188,21 @@ dllx double window_set_icon_raw(void* _hwnd, uint8_t* data, window_set_icon_data
 		return false;
 	}
 
-	currSmall.set(nextSmall);
-	currBig.set(nextBig);
 	auto hwnd = (HWND)_hwnd;
 	defIcon.check(hwnd);
+
+	currSmall.set(nextSmall);
+	currBig.set(nextBig);
+
+	window_icon_hook.icons[0] = nextSmall;
+	window_icon_hook.icons[1] = nextBig;
+	window_icon_hook_ensure(hwnd);
+
+	window_icon_hook.enable = false;
 	SendMessage(hwnd, WM_SETICON, ICON_SMALL, (LPARAM)nextSmall);
 	SendMessage(hwnd, WM_SETICON, ICON_BIG, (LPARAM)nextBig);
+	window_icon_hook.enable = true;
+
 	out->set(S_OK, "All good!");
 	return true;
 }
@@ -200,6 +246,7 @@ void SwapRedBlue(uint8_t* buf, size_t count) {
 	}
 	for (; i < count; i += 4) std::swap(buf[i], buf[i + 2]);
 }
+
 dllx double window_set_icon_surface_raw(void* _hwnd, uint8_t* rgba, window_set_icon_surface_data* out) {
 	static PreserveIcon lastIcon[2];
 	static PreserveBitmap lastBitmap[2];
@@ -217,19 +264,52 @@ dllx double window_set_icon_surface_raw(void* _hwnd, uint8_t* rgba, window_set_i
 	int big = (out->flags & 1);
 	lastIcon[big].set(icon);
 	lastBitmap[big].set(bmp);
+	window_icon_hook.icons[big] = icon;
 	//
 	auto hwnd = (HWND)_hwnd;
 	defIcon.check(hwnd);
 	WPARAM wp = big ? ICON_BIG : ICON_SMALL;
+
+	window_icon_hook_ensure(hwnd);
+	window_icon_hook.enable = false;
 	SendMessage(hwnd, WM_SETICON, wp, (LPARAM)icon);
+	window_icon_hook.enable = true;
+
+	out->set(S_OK, "All good!");
 	return true;
 }
 
 dllx double window_reset_icon_raw(void* _hwnd) {
 	if (!defIcon.isSet) return true;
 	auto hwnd = (HWND)_hwnd;
+	window_icon_hook.icons[0] = NULL;
+	window_icon_hook.icons[1] = NULL;
+
+	window_icon_hook.enable = false;
 	SendMessage(hwnd, WM_SETICON, ICON_SMALL, (LPARAM)defIcon.smallIcon);
 	SendMessage(hwnd, WM_SETICON, ICON_BIG, (LPARAM)defIcon.bigIcon);
+	window_icon_hook.enable = true;
+
+	return true;
+}
+
+dllx double window_sync_icon_raw(void* _hwnd) {
+	if (!defIcon.isSet) return true;
+	auto hwnd = (HWND)_hwnd;
+	HICON icon;
+
+	window_icon_hook.enable = false;
+	//
+	icon = window_icon_hook.icons[0];
+	if (icon == NULL) icon = defIcon.smallIcon;
+	SendMessage(hwnd, WM_SETICON, ICON_SMALL, (LPARAM)icon);
+	//
+	icon = window_icon_hook.icons[1];
+	if (icon == NULL) icon = defIcon.bigIcon;
+	SendMessage(hwnd, WM_SETICON, ICON_BIG, (LPARAM)defIcon.bigIcon);
+	//
+	window_icon_hook.enable = true;
+
 	return true;
 }
 
@@ -319,6 +399,7 @@ void init() {
 	utf8.init();
 	currSmall.init();
 	currBig.init();
+	window_icon_hook.init();
 }
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReserved) {
 	if (ul_reason_for_call == DLL_PROCESS_ATTACH) init();

@@ -148,6 +148,13 @@ window_set_icon_hresult = 0;
 window_set_icon_context = global.s_window_set_icon_all_good;
 return true;
 
+#define window_sync_icon
+/// ()
+window_sync_icon_raw(window_handle());
+window_set_icon_hresult = 0;
+window_set_icon_context = global.s_window_set_icon_all_good;
+return true;
+
 #define window_set_overlay_icon
 /// (path_to_an_ico, ?description)
 var _path = argument[0];

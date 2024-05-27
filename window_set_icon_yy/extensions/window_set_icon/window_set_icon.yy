@@ -103,6 +103,21 @@
                     "returnType": 2
                 },
                 {
+                    "id": "4b5b4600-0806-d349-cae0-70c4ff714496",
+                    "modelName": "GMExtensionFunction",
+                    "mvc": "1.0",
+                    "argCount": 1,
+                    "args": [
+                        1
+                    ],
+                    "externalName": "window_sync_icon_raw",
+                    "help": "",
+                    "hidden": true,
+                    "kind": 11,
+                    "name": "window_sync_icon_raw",
+                    "returnType": 2
+                },
+                {
                     "id": "c914c677-9010-bd2c-911f-817dd7d29594",
                     "modelName": "GMExtensionFunction",
                     "mvc": "1.0",
@@ -357,6 +372,21 @@
                     "hidden": false,
                     "kind": 2,
                     "name": "window_reset_icon",
+                    "returnType": 2
+                },
+                {
+                    "id": "9e2546e8-7b56-cb85-0610-2b80e9190a68",
+                    "modelName": "GMExtensionFunction",
+                    "mvc": "1.0",
+                    "argCount": 0,
+                    "args": [
+                        
+                    ],
+                    "externalName": "window_sync_icon",
+                    "help": "window_sync_icon()",
+                    "hidden": false,
+                    "kind": 2,
+                    "name": "window_sync_icon",
                     "returnType": 2
                 },
                 {

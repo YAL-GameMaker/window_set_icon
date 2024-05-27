@@ -1,9 +1,9 @@
-<html lang="en"><head>
+<!DOCTYPE HTML><html lang="en"><head>
 <meta charset="UTF-8">
 <title>window_set_icon cheat sheet</title>
 <meta name="viewport" content="width=device-width" />
 <meta name="livenode" content="#doc" />
-<meta property="theme-color" content="<section><header>FFF037</header><article></article></section>" />
+<meta property="theme-color" content="#FFF037" />
 <meta property="og:type" content="article" />
 <meta property="og:locale" content="en_us" />
 <meta property="og:site_name" content="YellowAfterlife" />
@@ -43,7 +43,9 @@ body {
 	padding-left: 0;
 	margin: 0;
 }
-#doc article > ul, #doc article > ol {
+#doc blockquote { margin: 0.5em 0; padding: 0; }
+#doc article > ul, #doc li > ul,
+#doc article > ol, #doc li > ol {
 	padding-left: 20px;
 }
 #doc article ul li {
@@ -61,11 +63,14 @@ body {
 	padding-top: 1px;
 	padding-bottom: 1px;
 	cursor: pointer;
+	display: flex;
+	align-items: center;
 }
 #doc header a {
 	outline: none;
 	text-decoration: none;
 	color: #458;
+	word-break: break-word;
 }
 #doc header::before {
 	display: inline-block;
@@ -79,8 +84,7 @@ body {
 	border-radius: 50%;
 	margin-right: 4px;
 	vertical-align: middle;
-	position: relative;
-	top: -1px;
+	flex-shrink: 0;
 }
 #doc section.open > header::before {
 	content: "-";
@@ -88,9 +92,11 @@ body {
 #doc section.empty > header::before {
 	content: " "; /*"·"*/
 }
-#doc header:hover {
-	border-left-color: #f3f3f3;
-	background: #f3f3f3;
+
+#doc header:hover,
+#doc .sticky-side:hover {
+	border-left-color: #E7E7E7; /* rgba(0, 0, 0, 0.05) */
+	background: rgba(0, 0, 0, 0.048);
 }
 #doc header .ret-arrow {
 	font-weight: normal;
@@ -116,13 +122,43 @@ body {
 	border-bottom: 1px solid #ccc;
 }
 
-#doc article, #doc ul {
+#doc article,
+#doc ul,
+#doc ol,
+#doc blockquote {
 	padding-left: 20px;
 	border-left: 2px solid #f3f3f3;
 }
 #doc article {
 	padding-top: 0.25em;
 	padding-bottom: 0.5em;
+	position: relative;
+}
+#doc .sticky-side {
+	position: absolute;
+	left: -2px;
+	top: 0;
+	bottom: 1px;
+	width: 20px;
+	writing-mode: vertical-rl;
+	font-size: 85%;
+	text-orientation: sideways;
+	/*transform: rotate(0.05deg);*/
+}
+#doc .sticky-side,
+#doc .sticky-side:visited {
+	color: rgba(0, 0, 0, 0.3);
+}
+#doc .sticky-side > span {
+	display: inline-block;
+	position: sticky;
+	left: 0;
+	top: 0;
+	padding: 0.3em 0;
+	max-height: 100%;
+	box-sizing: border-box;
+	overflow: hidden;
+	white-space: nowrap;
 }
 #doc tt {
 	font-weight: bold;
@@ -211,12 +247,10 @@ body {
 #doc[ready] section:not(.open) > article {
 	display: none;
 }</style>
-<style type="text/css" id="night_css">#night { display: none }
-label[for="night"] {
-	color: blue;
-	text-decoration: underline;
+<style type="text/css" id="night_css">.main label[for="night"] {
 	cursor: pointer;
 }
+#night { display: none }
 #night:checked + .main {
 	background-color: #424242;
 }
@@ -237,6 +271,7 @@ label[for="night"] {
 }
 #night:checked + .main #doc header,
 #night:checked + .main #doc header:hover,
+#night:checked + .main #doc .sticky-side:hover,
 #night:checked + .main #doc article,
 #night:checked + .main #doc section,
 #night:checked + .main #doc section + p,
@@ -249,6 +284,7 @@ label[for="night"] {
 	border-color: rgba(205,225,255,0.1);
 }
 #night:checked + .main #doc header:hover,
+#night:checked + .main #doc .sticky-side:hover,
 #night:checked + .main #doc .asset:hover {
 	background: rgba(205,225,255,0.1);
 }
@@ -264,6 +300,10 @@ label[for="night"] {
 	background-color: #000;
 	border-color: #5b7c9f;
 	color: white;
+}
+#night:checked + .main #doc .sticky-side,
+#night:checked + .main #doc .sticky-side:visited {
+	color: rgba(255, 255, 255, 0.3);
 }</style>
 <style type="text/css" id="print_css">@media print {
 	.main { background-color: transparent }
@@ -297,21 +337,29 @@ label[for="night"] {
 	var night = document.getElementById("night");
 	var path = "docmd night mode";
 	var ls = window.localStorage;
+	var dark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 	if (ls) {
-		night.checked = ls.getItem(path) == "true";
+		var item = ls.getItem(path);
+		night.checked = item ? item == "true" : dark;
 		night.onchange = function(_) {
 			ls.setItem(path, "" + night.checked);
 		};
-	}
+	} else night.checked = dark;
 })();</script>
 <main class="page">
-<section class="intro">This is a "cheat sheet" for "window_set_icon" extension by YellowAfterlife.<br/>
-The extension can be found on <a href="https://yellowafterlife.itch.io/window-set-icon">itch.io</a>.</section><section class="display-controls">
+<section class="intro">
+<h1 style='transform: skewX(-5deg); margin: 0.5em 0;'>window_set_icon</h1><p>This is a "cheat sheet" for the "window_set_icon" extension by YellowAfterlife.
+</p><p>
+The extension can be found <a href="https://yellowafterlife.itch.io/gamemaker-window_set_icon">on itch.io</a>.
+</p><p>
+The source code can be found <a href="https://github.com/YAL-GameMaker/window_set_icon/">on GitHub</a>.</p>
+</section>
+<section class="display-controls">
 Click on sections to expand/collapse them.<br>Quick display controls:
-<a href="#" onclick="opt_none(); return false">Categories</a>
-&middot; <a href="#" onclick="opt_list(); return false">Sections</a>
-&middot; <a href="#" onclick="opt_all(); return false">Everything</a>
-&middot; <label for="night">Toggle night mode</label><br/>
+<a href="javascript:void(0)" onclick="opt_none(); return false">Categories</a>
+&middot; <a href="javascript:void(0)" onclick="opt_list(); return false">Sections</a>
+&middot; <a href="javascript:void(0)" onclick="opt_all(); return false">Everything</a>
+&middot; <a href="javascript:void(0)"><label for="night">Toggle night mode</label></a><br/>
 </section><section id="doc">
 <!--<doc--><p><p>
 
@@ -326,26 +374,78 @@ Click on sections to expand/collapse them.<br>Quick display controls:
 
 
 
-</p><section><header id="window_set_icon"><a href="#window_set_icon" title="(permalink)">window_set_icon(path_to_ico)</a></header><article><p>
-	Changes the window icon. Path should point to a valid ICO file.
-</p></article></section><section><header id="window_set_icon_buffer"><a href="#window_set_icon_buffer" title="(permalink)">window_set_icon_buffer(buffer_with_an_ico_inside)</a></header><article><p>
-	Changes the window icon. The buffer should contain a valid ICO file.
-</p></article></section><section><header id="window_set_icon_surface"><a href="#window_set_icon_surface" title="(permalink)">window_set_icon_surface(surface, set_big_icon:bool)</a></header><article><p>
-	Changes the window icon to match the pixels in a surface.<br/>
-	"big" (32x32) icon may used for display in taskbar.
-</p></article></section><section><header id="window_reset_icon"><a href="#window_reset_icon" title="(permalink)">window_reset_icon()</a></header><article><p>
-	Resets the window icon to whatever it was on game start.
-</p></article></section><hr/><section><header id="window_set_overlay_icon"><a href="#window_set_overlay_icon" title="(permalink)">window_set_overlay_icon(path_to_ico, ?description)</a></header><article><p>
-	Changes the little overlay/notification badge icon shown in the corner of the window.
-	Path should point to a valid ICO file.
-</p></article></section><section><header id="window_set_overlay_icon_buffer"><a href="#window_set_overlay_icon_buffer" title="(permalink)">window_set_overlay_icon_buffer(buffer_with_an_ico_inside, ?description)</a></header><article><p>
-	Changes the little overlay/notification badge icon shown in the corner of the taskbar button.
-	The buffer should contain a valid ICO file.
-</p></article></section><section><header id="window_set_overlay_icon_surface"><a href="#window_set_overlay_icon_surface" title="(permalink)">window_set_overlay_icon_surface(surface, ?description)</a></header><article><p>
-	Changes the little overlay/notification badge icon shown in the corner of the taskbar button to match pixels in a surface.
-</p></article></section><section><header id="window_reset_overlay_icon"><a href="#window_reset_overlay_icon" title="(permalink)">window_reset_overlay_icon()</a></header><article><p>
-	Resets/removes the little overlay/notification badge icon.
-</p></article></section></p><!--doc>-->
+
+
+
+</p><section><header id="fun-window"><a href="#fun-window" title="(permalink)">Window icon functions</a></header><article><a class="sticky-side" href="#fun-window" title="Window icon functions"><span>Window icon functions</span></a><section><header id="window_set_icon"><a href="#window_set_icon" title="(permalink)">window_set_icon(path_to_ico)&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
+		Changes the window icon.
+		</p><p>
+		Path should point to a valid ICO file.
+		</p><p>
+		Returns whether successful. Sets <a href="#errors">status variables</a>.
+	</p></article></section><section><header id="window_set_icon_buffer"><a href="#window_set_icon_buffer" title="(permalink)">window_set_icon_buffer(buffer_with_an_ico_inside)&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
+		Changes the window icon.
+		</p><p>
+		The buffer should contain a valid ICO file.
+		</p><p>
+		Returns whether successful. Sets <a href="#errors">status variables</a>.
+	</p></article></section><section><header id="window_set_icon_surface"><a href="#window_set_icon_surface" title="(permalink)">window_set_icon_surface(surface, set_big_icon:bool)&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
+		Changes the window icon to match the pixels in a surface.
+		</p><p>
+		<code>set_big_icon</code> indicates whether to change the big (32x32) instead of small (16x16) icon.
+		</p><p>
+		The "big" icon may used for display in taskbar.
+		</p><p>
+		Returns whether successful. Sets <a href="#errors">status variables</a>.
+	</p></article></section><section><header id="window_reset_icon"><a href="#window_reset_icon" title="(permalink)">window_reset_icon()&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
+		Resets the window icon to whatever it was before you first called this extension's functions.
+		</p><p>
+		Cannot fail, but returns <code>true</code> and sets <a href="#errors">status variables</a> just in case.
+	</p></article></section><section><header id="window_sync_icon"><a href="#window_sync_icon" title="(permalink)">window_sync_icon()&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
+		Re-applies whatever last icon that we had stored.
+		</p><p>
+		You should only call this yourself if you encounter a situation where the window icon
+		changes back.
+		</p><p>
+		Cannot fail, but returns <code>true</code> and sets <a href="#errors">status variables</a> just in case.
+	</p></article></section></article></section><section><header id="fun-taskbar"><a href="#fun-taskbar" title="(permalink)">Taskbar icon overlay functions</a></header><article><a class="sticky-side" href="#fun-taskbar" title="Taskbar icon overlay functions"><span>Taskbar icon overlay functions</span></a><section><header id="window_set_overlay_icon"><a href="#window_set_overlay_icon" title="(permalink)">window_set_overlay_icon(path_to_ico, ?description)&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
+		Changes the little overlay/notification badge icon shown in the corner of the window.
+		</p><p>
+		Path should point to a valid ICO file.
+		</p><p>
+		<code>description</code> (optional) is a string that provides the alt text version
+	of the information conveyed by the overlay, for accessibility purposes.
+	(<a href="https://learn.microsoft.com/en-us/windows/win32/api/shobjidl_core/nf-shobjidl_core-itaskbarlist3-setoverlayicon">MSDN</a>)
+		</p><p>
+		Returns whether successful. Sets <a href="#errors">status variables</a>.
+	</p></article></section><section><header id="window_set_overlay_icon_buffer"><a href="#window_set_overlay_icon_buffer" title="(permalink)">window_set_overlay_icon_buffer(buffer_with_an_ico_inside, ?description)&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
+		Changes the little overlay/notification badge icon shown in the corner of the taskbar button.
+		</p><p>
+		The buffer should contain a valid ICO file.
+		</p><p>
+		<code>description</code> (optional) is a string that provides the alt text version
+	of the information conveyed by the overlay, for accessibility purposes.
+	(<a href="https://learn.microsoft.com/en-us/windows/win32/api/shobjidl_core/nf-shobjidl_core-itaskbarlist3-setoverlayicon">MSDN</a>)
+		</p><p>
+		Returns whether successful. Sets <a href="#errors">status variables</a>.
+	</p></article></section><section><header id="window_set_overlay_icon_surface"><a href="#window_set_overlay_icon_surface" title="(permalink)">window_set_overlay_icon_surface(surface, ?description)&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
+		Changes the little overlay/notification badge icon shown in the corner of the taskbar button to match pixels in a surface.
+		</p><p>
+		<code>description</code> (optional) is a string that provides the alt text version
+	of the information conveyed by the overlay, for accessibility purposes.
+	(<a href="https://learn.microsoft.com/en-us/windows/win32/api/shobjidl_core/nf-shobjidl_core-itaskbarlist3-setoverlayicon">MSDN</a>)
+		</p><p>
+		Returns whether successful. Sets <a href="#errors">status variables</a>.
+	</p></article></section><section><header id="window_reset_overlay_icon"><a href="#window_reset_overlay_icon" title="(permalink)">window_reset_overlay_icon()&#8203;<span class="ret-arrow">&#10140;</span></a></header><article><p>
+		Resets/removes the little overlay/notification badge icon.
+		</p><p>
+		Cannot fail, but returns <code>true</code> and sets <a href="#errors">status variables</a> just in case.
+	</p></article></section></article></section><section><header id="errors"><a href="#errors" title="(permalink)">Error handling</a></header><article><a class="sticky-side" href="#errors" title="Error handling"><span>Error handling</span></a><section><header id="window_set_icon_hresult"><a href="#window_set_icon_hresult" title="(permalink)">window_set_icon_hresult : real</a></header><article><p>
+		This is an <a href="https://learn.microsoft.com/en-us/windows/win32/seccrypto/common-hresult-values">HRESULT</a>
+		code for the last call.
+	</p></article></section><section><header id="window_set_icon_context"><a href="#window_set_icon_context" title="(permalink)">window_set_icon_context : string</a></header><article><p>
+		This is the context for the last call - either what failed, or which function threw up an error.
+	</p></article></section></article></section></p><!--doc>-->
 </section></main></div>
 <script type="text/javascript">(function() {
 	var doc, headers;

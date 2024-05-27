@@ -17,44 +17,46 @@
   "iosProps": true,
   "tvosProps": false,
   "androidProps": true,
+  "html5Props": false,
   "installdir": "",
   "files": [
-    {"resourceType":"GMExtensionFile","resourceVersion":"1.0","name":"","filename":"window_set_icon.dll","origname":"extensions\\window_set_icon.dll","init":"","final":"","kind":1,"uncompress":false,"functions":[
-        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_set_icon_init_raw_raw","externalName":"window_set_icon_init_raw_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":2,"args":[
+    {"resourceType":"GMExtensionFile","resourceVersion":"1.0","name":"","constants":[],"copyToTargets":9223372036854775807,"filename":"window_set_icon.dll","final":"","functions":[
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_set_icon_init_raw_raw","argCount":2,"args":[
             1,
             2,
-          ],},
-        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_set_icon_raw","externalName":"window_set_icon_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":3,"args":[
+          ],"documentation":"","externalName":"window_set_icon_init_raw_raw","help":"","hidden":true,"kind":11,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_set_icon_raw","argCount":3,"args":[
             1,
             1,
             1,
-          ],},
-        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_set_icon_surface_raw","externalName":"window_set_icon_surface_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":3,"args":[
+          ],"documentation":"","externalName":"window_set_icon_raw","help":"","hidden":true,"kind":11,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_set_icon_surface_raw","argCount":3,"args":[
             1,
             1,
             1,
-          ],},
-        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_reset_icon_raw","externalName":"window_reset_icon_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":1,"args":[
+          ],"documentation":"","externalName":"window_set_icon_surface_raw","help":"","hidden":true,"kind":11,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_reset_icon_raw","argCount":1,"args":[
             1,
-          ],},
-        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_set_overlay_icon_raw","externalName":"window_set_overlay_icon_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":4,"args":[
+          ],"documentation":"","externalName":"window_reset_icon_raw","help":"","hidden":true,"kind":11,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_sync_icon_raw","argCount":1,"args":[
             1,
-            1,
-            1,
-            1,
-          ],},
-        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_set_overlay_icon_surface_raw","externalName":"window_set_overlay_icon_surface_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":4,"args":[
+          ],"documentation":"","externalName":"window_sync_icon_raw","help":"","hidden":true,"kind":11,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_set_overlay_icon_raw","argCount":4,"args":[
             1,
             1,
             1,
             1,
-          ],},
-        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_reset_overlay_icon_raw","externalName":"window_reset_overlay_icon_raw","kind":11,"help":"","hidden":true,"returnType":2,"argCount":1,"args":[
+          ],"documentation":"","externalName":"window_set_overlay_icon_raw","help":"","hidden":true,"kind":11,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_set_overlay_icon_surface_raw","argCount":4,"args":[
             1,
-          ],},
-      ],"constants":[],"ProxyFiles":[
-        {"resourceType":"GMProxyFile","resourceVersion":"1.0","name":"window_set_icon_x64.dll","TargetMask":6,},
-      ],"copyToTargets":9223372036854775807,"order":[
+            1,
+            1,
+            1,
+          ],"documentation":"","externalName":"window_set_overlay_icon_surface_raw","help":"","hidden":true,"kind":11,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_reset_overlay_icon_raw","argCount":1,"args":[
+            1,
+          ],"documentation":"","externalName":"window_reset_overlay_icon_raw","help":"","hidden":true,"kind":11,"returnType":2,},
+      ],"init":"","kind":1,"order":[
         {"name":"window_set_icon_init_raw_raw","path":"extensions/window_set_icon/window_set_icon.yy",},
         {"name":"window_set_icon_raw","path":"extensions/window_set_icon/window_set_icon.yy",},
         {"name":"window_set_icon_surface_raw","path":"extensions/window_set_icon/window_set_icon.yy",},
@@ -62,44 +64,47 @@
         {"name":"window_set_overlay_icon_raw","path":"extensions/window_set_icon/window_set_icon.yy",},
         {"name":"window_set_overlay_icon_surface_raw","path":"extensions/window_set_icon/window_set_icon.yy",},
         {"name":"window_reset_overlay_icon_raw","path":"extensions/window_set_icon/window_set_icon.yy",},
-      ],},
-    {"resourceType":"GMExtensionFile","resourceVersion":"1.0","name":"","filename":"window_set_icon.gml","origname":"extensions\\gml.gml","init":"window_set_icon_init","final":"","kind":2,"uncompress":false,"functions":[
-        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_set_icon_init","externalName":"window_set_icon_init","kind":11,"help":"","hidden":true,"returnType":2,"argCount":0,"args":[],},
-        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_set_icon_prepare_buffer","externalName":"window_set_icon_prepare_buffer","kind":11,"help":"","hidden":true,"returnType":2,"argCount":1,"args":[
+      ],"origname":"extensions\\window_set_icon.dll","ProxyFiles":[
+        {"resourceType":"GMProxyFile","resourceVersion":"1.0","name":"window_set_icon_x64.dll","TargetMask":6,},
+      ],"uncompress":false,"usesRunnerInterface":false,},
+    {"resourceType":"GMExtensionFile","resourceVersion":"1.0","name":"","constants":[
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"window_set_icon_hresult","hidden":false,"value":"global.g_window_set_icon_hresult",},
+        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"window_set_icon_context","hidden":false,"value":"global.g_window_set_icon_context",},
+      ],"copyToTargets":9223372036854775807,"filename":"window_set_icon.gml","final":"","functions":[
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_set_icon_init","argCount":0,"args":[],"documentation":"","externalName":"window_set_icon_init","help":"","hidden":true,"kind":11,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_set_icon_prepare_buffer","argCount":1,"args":[
             2,
-          ],},
-        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_set_icon_impl_load","externalName":"window_set_icon_impl_load","kind":11,"help":"","hidden":true,"returnType":2,"argCount":1,"args":[
+          ],"documentation":"","externalName":"window_set_icon_prepare_buffer","help":"","hidden":true,"kind":11,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_set_icon_impl_load","argCount":1,"args":[
             2,
-          ],},
-        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_set_icon_impl_reuse","externalName":"window_set_icon_impl_reuse","kind":11,"help":"","hidden":true,"returnType":2,"argCount":0,"args":[],},
-        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_set_icon_impl_argbuf","externalName":"window_set_icon_impl_argbuf","kind":11,"help":"","hidden":true,"returnType":2,"argCount":0,"args":[],},
-        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_set_icon_impl_surfbuf","externalName":"window_set_icon_impl_surfbuf","kind":11,"help":"","hidden":true,"returnType":2,"argCount":2,"args":[
-            2,
-            2,
-          ],},
-        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_set_icon_impl_argres","externalName":"window_set_icon_impl_argres","kind":11,"help":"","hidden":true,"returnType":2,"argCount":2,"args":[
-            2,
-            2,
-          ],},
-        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_set_icon","externalName":"window_set_icon","kind":2,"help":"window_set_icon(path_to_an_ico)","hidden":false,"returnType":2,"argCount":1,"args":[
-            2,
-          ],},
-        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_set_icon_buffer","externalName":"window_set_icon_buffer","kind":2,"help":"window_set_icon_buffer(buffer_with_an_ico_inside)","hidden":false,"returnType":2,"argCount":1,"args":[
-            2,
-          ],},
-        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_set_icon_surface","externalName":"window_set_icon_surface","kind":2,"help":"window_set_icon_surface(surface, set_big_icon)","hidden":false,"returnType":2,"argCount":2,"args":[
+          ],"documentation":"","externalName":"window_set_icon_impl_load","help":"","hidden":true,"kind":11,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_set_icon_impl_reuse","argCount":0,"args":[],"documentation":"","externalName":"window_set_icon_impl_reuse","help":"","hidden":true,"kind":11,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_set_icon_impl_argbuf","argCount":0,"args":[],"documentation":"","externalName":"window_set_icon_impl_argbuf","help":"","hidden":true,"kind":11,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_set_icon_impl_surfbuf","argCount":2,"args":[
             2,
             2,
-          ],},
-        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_reset_icon","externalName":"window_reset_icon","kind":2,"help":"window_reset_icon()","hidden":false,"returnType":2,"argCount":0,"args":[],},
-        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_set_overlay_icon","externalName":"window_set_overlay_icon","kind":2,"help":"window_set_overlay_icon(path_to_an_ico, ?description)","hidden":false,"returnType":2,"argCount":-1,"args":[],},
-        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_set_overlay_icon_buffer","externalName":"window_set_overlay_icon_buffer","kind":2,"help":"window_set_overlay_icon_buffer(buffer_with_an_ico_inside, ?description)","hidden":false,"returnType":2,"argCount":-1,"args":[],},
-        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_set_overlay_icon_surface","externalName":"window_set_overlay_icon_surface","kind":2,"help":"window_set_overlay_icon_surface(surface, ?description)","hidden":false,"returnType":2,"argCount":-1,"args":[],},
-        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_reset_overlay_icon","externalName":"window_reset_overlay_icon","kind":2,"help":"window_reset_overlay_icon()","hidden":false,"returnType":2,"argCount":0,"args":[],},
-      ],"constants":[
-        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"window_set_icon_hresult","value":"global.g_window_set_icon_hresult","hidden":false,},
-        {"resourceType":"GMExtensionConstant","resourceVersion":"1.0","name":"window_set_icon_context","value":"global.g_window_set_icon_context","hidden":false,},
-      ],"ProxyFiles":[],"copyToTargets":9223372036854775807,"order":[
+          ],"documentation":"","externalName":"window_set_icon_impl_surfbuf","help":"","hidden":true,"kind":11,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_set_icon_impl_argres","argCount":2,"args":[
+            2,
+            2,
+          ],"documentation":"","externalName":"window_set_icon_impl_argres","help":"","hidden":true,"kind":11,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_set_icon","argCount":1,"args":[
+            2,
+          ],"documentation":"","externalName":"window_set_icon","help":"window_set_icon(path_to_an_ico)","hidden":false,"kind":2,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_set_icon_buffer","argCount":1,"args":[
+            2,
+          ],"documentation":"","externalName":"window_set_icon_buffer","help":"window_set_icon_buffer(buffer_with_an_ico_inside)","hidden":false,"kind":2,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_set_icon_surface","argCount":2,"args":[
+            2,
+            2,
+          ],"documentation":"","externalName":"window_set_icon_surface","help":"window_set_icon_surface(surface, set_big_icon)","hidden":false,"kind":2,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_reset_icon","argCount":0,"args":[],"documentation":"","externalName":"window_reset_icon","help":"window_reset_icon()","hidden":false,"kind":2,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_sync_icon","argCount":0,"args":[],"documentation":"","externalName":"window_sync_icon","help":"window_sync_icon()","hidden":false,"kind":2,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_set_overlay_icon","argCount":-1,"args":[],"documentation":"","externalName":"window_set_overlay_icon","help":"window_set_overlay_icon(path_to_an_ico, ?description)","hidden":false,"kind":2,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_set_overlay_icon_buffer","argCount":-1,"args":[],"documentation":"","externalName":"window_set_overlay_icon_buffer","help":"window_set_overlay_icon_buffer(buffer_with_an_ico_inside, ?description)","hidden":false,"kind":2,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_set_overlay_icon_surface","argCount":-1,"args":[],"documentation":"","externalName":"window_set_overlay_icon_surface","help":"window_set_overlay_icon_surface(surface, ?description)","hidden":false,"kind":2,"returnType":2,},
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_reset_overlay_icon","argCount":0,"args":[],"documentation":"","externalName":"window_reset_overlay_icon","help":"window_reset_overlay_icon()","hidden":false,"kind":2,"returnType":2,},
+      ],"init":"window_set_icon_init","kind":2,"order":[
         {"name":"window_set_icon_init","path":"extensions/window_set_icon/window_set_icon.yy",},
         {"name":"window_set_icon_prepare_buffer","path":"extensions/window_set_icon/window_set_icon.yy",},
         {"name":"window_set_icon_impl_load","path":"extensions/window_set_icon/window_set_icon.yy",},
@@ -114,15 +119,16 @@
         {"name":"window_set_overlay_icon_buffer","path":"extensions/window_set_icon/window_set_icon.yy",},
         {"name":"window_set_overlay_icon_surface","path":"extensions/window_set_icon/window_set_icon.yy",},
         {"name":"window_reset_overlay_icon","path":"extensions/window_set_icon/window_set_icon.yy",},
-      ],},
-    {"resourceType":"GMExtensionFile","resourceVersion":"1.0","name":"","filename":"autogen.gml","origname":"extensions\\autogen.gml","init":"","final":"","kind":2,"uncompress":false,"functions":[
-        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_set_icon_init_raw","externalName":"window_set_icon_init_raw","kind":2,"help":"window_set_icon_init_raw(isRGBA:number)->bool","hidden":false,"returnType":2,"argCount":1,"args":[
+      ],"origname":"extensions\\gml.gml","ProxyFiles":[],"uncompress":false,"usesRunnerInterface":false,},
+    {"resourceType":"GMExtensionFile","resourceVersion":"1.0","name":"","constants":[],"copyToTargets":-1,"filename":"autogen.gml","final":"","functions":[
+        {"resourceType":"GMExtensionFunction","resourceVersion":"1.0","name":"window_set_icon_init_raw","argCount":1,"args":[
             2,
-          ],},
-      ],"constants":[],"ProxyFiles":[],"copyToTargets":-1,"order":[
+          ],"documentation":"","externalName":"window_set_icon_init_raw","help":"window_set_icon_init_raw(isRGBA:number)->bool","hidden":false,"kind":2,"returnType":2,},
+      ],"init":"","kind":2,"order":[
         {"name":"window_set_icon_init_raw","path":"extensions/window_set_icon/window_set_icon.yy",},
-      ],},
+      ],"origname":"extensions\\autogen.gml","ProxyFiles":[],"uncompress":false,"usesRunnerInterface":false,},
   ],
+  "HTML5CodeInjection": "",
   "classname": "",
   "tvosclassname": "",
   "tvosdelegatename": "",
